@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajashekar Reddy - AI Engineer | GenAI & LLM Specialist</title>
+    <meta name="description" content="Senior AI Engineer specializing in GenAI, RAG systems, and LLM applications. Building scalable AI solutions with Python, FastAPI, and AWS.">
+    <meta property="og:image" content="https://your-domain.com/og-image.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-card: #1a1f3a;
+            --bg-accent: #0f1a2e;
+            --text-primary: #f0f4ff;
+            --text-secondary: #a8b5d1;
+            --accent-primary: #00d9ff;
+            --accent-secondary: #6366f1;
+            --accent-glow: #00d9ff;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -10%;
+            right: -10%;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -5%;
+            left: -5%;
+            animation: float 8s ease-in-out infinite reverse;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 20px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, #60a5fa 50%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section */
+        .section {
+            padding: 100px 20px;
+            border-bottom: 1px solid rgba(45, 55, 72, 0.3);
+            position: relative;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(15, 26, 46, 0.8) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--accent-primary);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 217, 255, 0.25);
+            border-color: var(--accent-primary);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.9) 0%, rgba(15, 26, 46, 0.9) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            z-index: 10;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 217, 255, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0.1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.3), transparent);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.3rem;
+        }
+
+        .tech-badge {
+            background: rgba(0, 217, 255, 0.12);
+            color: var(--accent-primary);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 217, 255, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-links a:hover {
+            background: var(--accent-primary);
+            color: var(--bg-dark);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .contact-methods {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .contact-method:hover {
+            color: var(--accent-primary);
+            transform: translateX(3px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(45, 55, 72, 0.3);
+            padding: 2rem 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 100px 20px 60px; }
+            .hero h1 { font-size: 2.5rem; }
+            .section { padding: 60px 20px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .nav-links { display: none; }
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Rajashekar.Dev</div>
+            <ul class="nav-links">
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Rajashekar Reddy</h1>
+            <p class="hero-subtitle">Senior AI Engineer | GenAI & LLM Specialist</p>
+            <p class="hero-description">
+                Building intelligent systems powered by large language models and retrieval-augmented generation. 
+                Specializing in production-grade AI solutions that scale across enterprises with Python, FastAPI, and AWS.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="section" id="expertise">
+        <div class="container">
+            <h2>Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🧠 AI/ML Core</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GenAI</span>
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">RAG Systems</span>
+                        <span class="skill-tag">Agentic AI</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Fine-tuning</span>
+                        <span class="skill-tag">Vector DBs</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>⚙️ Backend & APIs</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">MCP</span>
+                        <span class="skill-tag">Async/Await</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🚀 Deployment & Scale</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">ECS</span>
+                        <span class="skill-tag">EKS</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Auto Scaling</span>
+                        <span class="skill-tag">Load Balancing</span>
+                        <span class="skill-tag">Monitoring</span>
+                        <span class="skill-tag">CloudWatch</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🛠️ AI Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">LangSmith</span>
+                        <span class="skill-tag">Claude API</span>
+                        <span class="skill-tag">OpenAI</span>
+                        <span class="skill-tag">LLaMA</span>
+                        <span class="skill-tag">OpenSearch</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🎯 Specializations</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Production Ready AI</span>
+                        <span class="skill-tag">Agentic AI</span>
+                        <span class="skill-tag">RAG Pipelines</span>
+                        <span class="skill-tag">Accuracy Optimization</span>
+                        <span class="skill-tag">Latency Reduction</span>
+                        <span class="skill-tag">High Availability</span>
+                        <span class="skill-tag">Reranking</span>
+                        <span class="skill-tag">Guardrails</span>
+                        <span class="skill-tag">Security</span>
+                        <span class="skill-tag">Scalability</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🖼️ Frontend & UI</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">UI/UX</span>
+                        <span class="skill-tag">Real-time</span>
+                        <span class="skill-tag">Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1: Financial RAG Chatbot -->
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3 class="project-title">GenAI-Powered Financial RAG Chatbot</h3>
+                        <p class="project-description">
+                            Enterprise-grade financial analysis assistant leveraging retrieval-augmented generation to summarize and analyze complex quarterly reports, financial documents, and investment prospectuses at scale.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">10K+</div>
+                                <div class="metric-label">Concurrent Users</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">99.9%</div>
+                                <div class="metric-label">Uptime</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">87%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">62%</div>
+                                <div class="metric-label">Cost Reduction</div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                            <strong>Impact:</strong> Reduced manual report analysis time from hours to minutes. Teams now process quarterly reports 5x faster with enhanced accuracy. Saved $500K+ annually in manual analysis labor.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">GenAI</span>
+                            <span class="tech-badge">Claude 3.5</span>
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">OpenSearch</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">AWS Bedrock</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Reranking</span>
+                            <span class="tech-badge">RAGAS</span>
+                            <span class="tech-badge">Guardrails</span>
+                            <span class="tech-badge">ECS</span>
+                            <span class="tech-badge">CloudWatch</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">Live Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Doctor Note Taker AI -->
+                <div class="project-card">
+                    <div class="project-image">🏥</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Doctor Note Taker AI</h3>
+                        <p class="project-description">
+                            Intelligent healthcare documentation assistant that automatically converts doctor-patient conversations into structured clinical notes, extracting symptoms, diagnoses, medications, and follow-up actions in real-time.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">500+</div>
+                                <div class="metric-label">Daily Users</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">92%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">75%</div>
+                                <div class="metric-label">Time Saved</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">HIPAA</div>
+                                <div class="metric-label">Compliant</div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                            <strong>Impact:</strong> Doctors now spend 75% less time on administrative documentation. Average note creation reduced from 15 minutes to 3 minutes. Patient satisfaction increased due to more face-to-face time.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LLaMA</span>
+                            <span class="tech-badge">Speech-to-Text</span>
+                            <span class="tech-badge">LangGraph</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Streamlit</span>
+                            <span class="tech-badge">AWS</span>
+                            <span class="tech-badge">Security</span>
+                            <span class="tech-badge">HIPAA</span>
+                            <span class="tech-badge">Real-time</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">Demo Video</a>
+                            <a href="#">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Let's Build the Future of AI Together</h2>
+            <p class="contact-description">
+                I'm passionate about building intelligent systems that solve real problems at scale. 
+                Whether it's GenAI, LLMs, or production AI infrastructure, let's collaborate.
+            </p>
+            <div class="contact-methods">
+                <a href="mailto:shekar3994@gmail.com" class="contact-method">
+                    <span>📧</span> shekar3994@gmail.com
+                </a>
+                <a href="tel:+15015003994" class="contact-method">
+                    <span>📱</span> (501) 500-3994
+                </a>
+                <a href="https://linkedin.com/in/rajashekarreddy" class="contact-method">
+                    <span>💼</span> LinkedIn
+                </a>
+                <a href="https://github.com/RajReddyGangasani" class="contact-method">
+                    <span>🐙</span> GitHub
+                </a>
+            </div>
+            <a href="mailto:shekar3994@gmail.com" class="btn btn-primary">Send Me an Email</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Rajashekar Reddy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
